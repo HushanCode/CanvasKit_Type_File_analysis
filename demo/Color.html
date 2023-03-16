@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+  <title>CanvasKit Color 示例</title>
+  <!-- 加载 CanvasKit 库 -->
+  <script src="../node_modules/canvaskit-wasm/bin/canvaskit.js"></script>
+</head>
+
+<body onload="drawCircle()">
+  <canvas id="canvas" width="200" height="200"></canvas>
+  <script>
+    function drawCircle () {
+      CanvasKitInit({
+        locateFile: (file) => '/node_modules/canvaskit-wasm/bin/' + file,
+      }).then((CanvasKit) => {
+        //获取CanvasKit库的实例，并执行相关操作
+
+        // 获取 canvas 元素和绘图上下文
+        const surface = CanvasKit.MakeWebGLCanvasSurface("canvas")
+        const canvas = surface.getCanvas()
+
+        // 创建画笔和颜色对象
+        const paint = new CanvasKit.Paint()
+        const color = CanvasKit.Color(255, 0, 0, 1)
+
+        // 设置画笔颜色
+        paint.setColor(color)
+        
+        // 设置画笔绘制样式为填充
+        paint.setStyle(CanvasKit.PaintStyle.Fill)
+
+        // 圆心坐标为 (100, 100)，半径为 50 像素
+        canvas.drawCircle(100, 100, 50, paint)
+
+        // 刷新 surface，将绘制的图像渲染到 canvas 上
+        surface.flush()
+      })
+
+    }
+  </script>
+</body>
+
+</html>

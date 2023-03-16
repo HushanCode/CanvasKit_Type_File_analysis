@@ -1,0 +1,23 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title>CanvasKit ColorAsInt Example</title>
+</head>
+<body>
+	<canvas id="myCanvas"></canvas>
+
+	<script src="/node_modules//canvaskit-wasm/bin/canvaskit.js"></script>
+	<script>
+		CanvasKitInit().then(function(CanvasKit) {
+			var canvas = document.getElementById('myCanvas');
+			canvas.width = 400;
+			canvas.height = 400;
+			var context = canvas.getContext('2d');
+			var colorString = '#FF0000';
+			var colorAsInt = CanvasKit.ColorAsInt(colorString);
+      console.log('colorAsInt',colorAsInt,colorAsInt.toString(16).padStart(8, '0'));
+			canvas.style.backgroundColor = '#' + colorAsInt.toString(16).padStart(8, '0');
+		});
+	</script>
+</body>
+</html>
