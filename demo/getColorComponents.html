@@ -1,0 +1,25 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+  <meta charset="utf-8">
+  <title>CanvasKit.getColorComponents() 示例</title>
+  <script src="/node_modules/canvaskit-wasm/bin/canvaskit.js"></script>
+  <script type="module">
+    CanvasKitInit().then(function (CanvasKit) {
+      const surface = CanvasKit.MakeCanvasSurface('canvas')
+      const paint = new CanvasKit.Paint()
+      paint.setColor(CanvasKit.Color(255, 0, 255, 1))
+      const color = paint.getColor()
+      const components = CanvasKit.getColorComponents(color)
+      console.log(components)
+    });
+
+  </script>
+</head>
+
+<body>
+  <canvas id="canvas"></canvas>
+</body>
+
+</html>

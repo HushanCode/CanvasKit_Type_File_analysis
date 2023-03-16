@@ -1,0 +1,34 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+  <meta charset="utf-8">
+  <title>CanvasKit.getColorComponents() 示例</title>
+  <script src="/node_modules/canvaskit-wasm/bin/canvaskit.js"></script>
+  <script type="module">
+    CanvasKitInit().then(function (CanvasKit) {
+      const surface = CanvasKit.MakeCanvasSurface('canvas');
+      const canvas = surface.getCanvas();
+
+      // 绘制红色矩形
+      canvas.save();
+      canvas.drawRect(CanvasKit.LTRBRect(50, 50, 150, 150), ShaderFactory.MakeColor(0xFFFF0000));
+      canvas.restore();
+
+      // 将alpha通道乘以0.5
+      canvas.save();
+      canvas.multiplyByAlpha(0.5);
+      canvas.drawRect(CanvasKit.LTRBRect(100, 100, 200, 200), ShaderFactory.MakeColor(0xFF00FF00));
+      canvas.restore();
+
+      surface.flush();
+    });
+
+  </script>
+</head>
+
+<body>
+  <canvas id="canvas"></canvas>
+</body>
+
+</html>
